@@ -1,4 +1,4 @@
-name: Frontend CI for Static HTML/CSS
+name: 🚀 Deploy Static Site to GitHub Pages
 
 on:
   push:
@@ -10,22 +10,23 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Setup GitHub Pages
+      - name: ⚙️ Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload static site files
-        uses: actions/upload-pages-artifact@v4.6.2
+      - name: 📦 Upload Static Files
+        uses: actions/upload-pages-artifact@v2
         with:
           path: .
 
-      - name: Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
