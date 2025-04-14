@@ -1,0 +1,29 @@
+name: HTML-CSS Lint CI
+
+on:
+  push:
+    branches:
+      - ZIG-19-html-css-login-home
+      - ZIG-20-html-menu-cart-checkout
+      - ZIG-21-html-api-connect
+      - ZIG-22-dockerize-html-frontend
+
+jobs:
+  lint-html-css:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up HTMLHint
+        run: npm install -g htmlhint
+
+      - name: Lint HTML files
+        run: htmlhint .
+
+      - name: Set up CSSLint
+        run: npm install -g csslint
+
+      - name: Lint CSS files
+        run: csslint "**/*.css"
