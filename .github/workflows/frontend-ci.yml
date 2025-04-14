@@ -1,29 +1,31 @@
-name: HTML-CSS Lint CI
+name: Frontend CI for Static HTML/CSS
 
 on:
   push:
     branches:
-      - ZIG-19-html-css-login-home
-      - ZIG-20-html-menu-cart-checkout
-      - ZIG-21-html-api-connect
-      - ZIG-22-dockerize-html-frontend
+      - ZIG-19-react-frontend-login-home
+      - ZIG-20-react-menu-cart-checkout
+      - ZIG-21-frontend-backend-connect
+      - ZIG-22-dockerize-react-frontend
+
+permissions:
+  contents: write
 
 jobs:
-  lint-html-css:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up HTMLHint
-        run: npm install -g htmlhint
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
 
-      - name: Lint HTML files
-        run: htmlhint .
+      - name: Upload static site files
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: .
 
-      - name: Set up CSSLint
-        run: npm install -g csslint
-
-      - name: Lint CSS files
-        run: csslint "**/*.css"
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
