@@ -1,4 +1,4 @@
-name: Frontend CI for Static HTML/CSS
+name: 🛠️ Frontend CI for Static HTML/CSS
 
 on:
   push:
@@ -8,24 +8,15 @@ on:
       - ZIG-21-frontend-backend-connect
       - ZIG-22-dockerize-react-frontend
 
-permissions:
-  contents: write
-
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload static site files
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+      - name: ✅ Run Basic Lint/Check
+        run: |
+          echo "No build steps defined for static HTML/CSS"
+          echo "You can add custom scripts here if needed"
